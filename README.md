@@ -1,1 +1,1 @@
-DANIIL PS-11
+Daniil, PS-11
