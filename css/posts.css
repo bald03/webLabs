@@ -1,4 +1,4 @@
-/* Header */
+  /* Header */
 .logo
 {
     font-family: 'Lora';
@@ -29,12 +29,12 @@
     font-family: 'Oxygen';
     font-size: 17px;
     color: rgba(46, 46, 46, 0.63);
+    margin-bottom: 113px;
 }
 
-.post_photo
+.post__img
 {
-    background: url(../srs/img/articles_img/the-road-ahead.png) center center / cover no-repeat;
-    min-height: 534px;
+    width: 100%;
 }
 
 .post__text
@@ -44,12 +44,14 @@
     font-size: 24px;
     line-height: 1.46;
     color: #101315;
+    margin-bottom: 20px;
 }
 
 /* Footer */
 .footer
 {
-    background: url(../srs/img/articles_img/bg-footer.png) center center / cover no-repeat;
+  z-index: 1;
+  background: url(../srs/img/articles_img/bg-footer.png) center center / cover no-repeat;
     min-height: 89px;
     position: relative;
 }

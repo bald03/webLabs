@@ -69,6 +69,7 @@
     letter-spacing: 2px;
     color: #2E2E2E;
     position: relative;
+    margin-bottom: 40px;
 }
 
 .post__title::before
@@ -87,6 +88,23 @@
 {
     height: 280px;
     width: 460px;
+    position: relative;
+}
+
+.featured-posts__article-theme
+{
+  position: absolute;
+  width: 87px;
+  height: 26px;
+  left: 29px;
+  top: 26px;
+  padding: 6px 9px;
+  font-family: 'Oxygen';
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #FFF;
+  background-color: #DD783F;
+  border-radius: 2px;
 }
 
 .featured-posts__article-title
@@ -117,8 +135,7 @@
 
 .most-recent__article
 {
-    width: 296;
-    max-height: 291x;
+    width: 296px;
 }
 
 .most-recent__article-title
@@ -137,22 +154,28 @@
     margin-bottom: 32px;
 }
 
-.most-recent__article__header
+.most-recent__article-autor-avatar
 {
-    position: relative;
+    border-radius: 50%
 }
 
-.most-recent__article__header::after
+/* .most-recent__article__header
+{
+    position: relative;
+} */
+
+/* .most-recent__article__header::after
 {
     content: '';
     position: absolute;
     min-width: 296px;
     height: 1px;
     background: #DEDEDE;
-}
+} */
 
 .most-recent__article__footer
 {
+    border-top: #DEDEDE 1px solid;
     font-family: 'Oxygen';
     font-size: 11px;
     line-height: 35px;
@@ -162,6 +185,7 @@
 /* Footer */
 .footer
 {
+    z-index: 1;
     background: url(../srs/img/articles_img/bg-footer.png) center center / cover no-repeat;
     min-height: 89px;
     position: relative;
@@ -187,4 +211,11 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.6);
+}
+
+.most-recent__wraper
+{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
