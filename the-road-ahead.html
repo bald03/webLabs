@@ -4,13 +4,10 @@
   <meta charset="UTF-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
   <!-- Stylesheet -->
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/posts.css"/>
-
-  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Oxygen&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Oxygen:wght@300;400&family=Roboto&display=swap" rel="stylesheet">
   <!-- Favicon -->
   <link rel="apple-touch-icon" sizes="180x180" href="srs/favicons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="srs/favicons/favicon-32x32.png">
@@ -21,13 +18,13 @@
 </head>
 <body>
   <header class="header">
-    <div class="container">
+    <div class="container header__inner">
       <span class="logo">Escape.</span>
-      <nav class="nav">
-        <a href="#" class="nav__item">Home</a>
-        <a href="#" class="nav__item">Categories</a>
-        <a href="#" class="nav__item">About</a>
-        <a href="#" class="nav__item">Contact</a>
+      <nav class="menu">
+        <a href="#" class="menu__item">Home</a>
+        <a href="#" class="menu__item">Categories</a>
+        <a href="#" class="menu__item">About</a>
+        <a href="#" class="menu__item">Contact</a>
       </nav>
     </div>
   </header>
@@ -41,7 +38,7 @@
     <div class="post_photo">
       <img src="srs/img/articles_img/the-road-ahead.png" alt="Post photo" class="post__img">
     </div>
-    <div class="post__content">
+    <div class="post__wrapper">
       <div class="container">
         <p class="post__text">Dark spruce forest frowned on either side the frozen waterway. The trees had been stripped by a recent wind of their white covering of frost, and they seemed to lean towards each other, black and ominous, in the fading light. A vast silence reigned over the land. The land itself was a desolation, lifeless, without movement, so lone and cold that the spirit of it was not even that of sadness. There was a hint in it of laughter, but of a laughter more terrible than any sadness—a laughter that was mirthless as the smile of the sphinx, a laughter cold as the frost and partaking of the grimness of infallibility. It was the masterful and incommunicable wisdom of eternity laughing at the futility of life and the effort of life. It was the Wild, the savage, frozen-hearted Northland Wild.</p>
         <p class="post__text">Dark spruce forest frowned on either side the frozen waterway. The trees had been stripped by a recent wind of their white covering of frost, and they seemed to lean towards each other, black and ominous, in the fading light. A vast silence reigned over the land. The land itself was a desolation, lifeless, without movement, so lone and cold that the spirit of it was not even that of sadness. There was a hint in it of laughter, but of a laughter more terrible than any sadness—a laughter that was mirthless as the smile of the sphinx, a laughter cold as the frost and partaking of the grimness of infallibility. It was the masterful and incommunicable wisdom of eternity laughing at the futility of life and the effort of life. It was the Wild, the savage, frozen-hearted Northland Wild.</p>
@@ -51,16 +48,27 @@
       </div>
     </div>
   </article>
-  <footer class="footer">
+  <section class="form__wrapper">
     <div class="container">
-      <span class="footer__logo">Escape.</span>
-      <nav class="nav">
-        <a href="#" class="footer__nav__item">Home</a>
-        <a href="#" class="footer__nav__item">Categories</a>
-        <a href="#" class="footer__nav__item">About</a>
-        <a href="#" class="footer__nav__item">Contact</a>
-      </nav>
+      <form action="submit" class="form" id="form" >
+        <h2 class="form__title title__after">Stay in Touch</h2>
+        <div class="form__body">
+          <input class="form__input-email" placeholder="Enter your email address" type="email">
+          <button class="form__btn">Submit</button>
+        </div>
+      </form>
     </div>
-  </footer>
+    <footer class="footer">
+      <div class="container footer__inner">
+        <span class="footer__logo">Escape.</span>
+        <nav class="menu">
+          <a href="#" class="menu__item">Home</a>
+          <a href="#" class="menu__item">Categories</a>
+          <a href="#" class="menu__item">About</a>
+          <a href="#" class="menu__item">Contact</a>
+        </nav>
+      </div>
+    </footer>
+  </section>
 </body>
 </html>
