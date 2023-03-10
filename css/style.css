@@ -29,7 +29,7 @@
 
 .menu
 {
-    display: inline;
+    /* display: inline; */
     padding: 8px 0 0 0;
 }
 
@@ -41,7 +41,7 @@
     color: #FFF;
     text-transform: uppercase;
     margin: 0 10px;
-    text-decoration: none;
+    /* text-decoration: none; */
     opacity: .6;
     transition: opacity .2s linear;
 }
@@ -309,7 +309,7 @@
     position: relative;
 }
 
-.footer::before
+.footer::after
 {
     content: '';
     z-index: -1;
