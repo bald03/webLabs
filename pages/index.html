@@ -5,15 +5,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="static/css/reset.css">
+  <link rel="stylesheet" href="static/css/style.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Lora&family=Oxygen:wght@300;400&family=Roboto&display=swap" rel="stylesheet">
   <!-- Favicon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="srs/favicons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="srs/favicons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="srs/favicons/favicon-16x16.png">
-  <link rel="manifest" href="srs/favicons/site.webmanifest">
-  <title>Escape.</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="static/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="static/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="static/favicons/favicon-16x16.png">
+  <link rel="manifest" href="static/favicons/site.webmanifest">
+  <title>{{ .Title }}</title>
   </style>
 </head>
 <body>
@@ -50,47 +50,36 @@
       <div class="featured-posts">
         <h2 class="featured-posts__title post__title title__after">Featured Posts</h2>
         <div class="featured-posts__wrapper">
-          <article class="featured-posts__article" style="background: url('srs/img/articles_img/the-road-ahead-post.png');">
-            <h3 class="featured-posts__article-title">The Road Ahead</h3>
-            <p class="featured-posts__article-text">The road ahead might be paved - it might not be.</p>
+          {{ range .FeaturedPosts }}
+          <article class="featured-posts__article" style="background: url('{{ .ImgModifier }}') center center / cover no-repeat;">
+            <h3 class="featured-posts__article-title">{{ .Title }}</h3>
+            <p class="featured-posts__article-text">{{ .Subtitle }}</p>
             <div class="featured-posts__article-footer">
               <div class="featured-posts__article-autor">
-                <img src="/srs/img/autor_avatars/mat_vogels.jpg" alt="Author avatar" class="featured-posts__article-autor-avatar"/>
-                <p class="featured-posts__article-autor-name">Mat Vogels</p>
+                <img src="{{ .AuthorImg }}" alt="Author avatar" class="featured-posts__article-autor-avatar"/>
+                <p class="featured-posts__article-autor-name">{{ .Author }}</p>
               </div>
               <div class="featured-posts__post-date">
-                September 25, 2015
+                {{ .PublishDate }}
               </div>
             </div>
           </article>
-          <article class="featured-posts__article" style="background: url('srs/img/articles_img/from-top-down.png');">
-            <span class="featured-posts__article-theme">Adventure</span>
-            <h3 class="featured-posts__article-title">From Top Down</h3>
-            <p class="featured-posts__article-text">Once a year, go someplace you’ve never been before.</p>
-            <div class="featured-posts__article-footer">
-              <div class="featured-posts__article-autor">
-                <img src="/srs/img/autor_avatars/william_wong.jpg" alt="Author avatar" class="featured-posts__article-autor-avatar"/>
-                <p class="featured-posts__article-autor-name">William Wong</p>
-              </div>
-              <div class="featured-posts__post-date">
-                September 25, 2015
-              </div>
-            </div>
-          </article>
+          {{ end }}
         </div>
       </div>
       <div class="most-recent">
         <h2 class="most-recent__title post__title title__after">Most Recent</h2>
         <div class="most-recent__wrapper">
+          {{ range .MostResentPosts }}
           <article class="most-recent__article">
-            <img src="srs/img/articles_img/still_standing_tall_img.jpg" alt="Article photo" class="most-recent__article-photo">
+            <img src="static/img/articles_img/still_standing_tall_img.jpg" alt="Article photo" class="most-recent__article-photo">
             <div class="most-recent__article-body">
               <h3 class="most-recent__article-title">Still Standing Tall</h3>
               <p class="most-recent__article-text">Life begins at the end of your comfort zone.</p>
             </div>
             <div class="most-recent__article-footer">
               <div class="most-recent__article-autor">
-                <img src="/srs/img/autor_avatars/mat_vogels.jpg" alt="Author avatar" class="most-recent__article-autor-avatar"/>
+                <img src="static/img/autor_avatars/mat_vogels.jpg" alt="Author avatar" class="most-recent__article-autor-avatar"/>
                 <div class="most-recent__article-autor-name">
                   William Wong
                 </div>
@@ -100,15 +89,16 @@
               </div>
             </div>
           </article>
+          {{ end }}
           <article class="most-recent__article">
-            <img src="srs/img/articles_img/sunny_side_up_img.png" alt="Article photo" class="most-recent__article-photo">
+            <img src="static/img/articles_img/sunny_side_up_img.png" alt="Article photo" class="most-recent__article-photo">
             <div class="most-recent__article-body">
               <h3 class="most-recent__article-title">Sunny Side Up</h3>
               <p class="most-recent__article-text">No place is ever as bad as they tell you it’s going to be.</p>
             </div>
             <div class="most-recent__article-footer">
               <div class="most-recent__article-autor">
-                <img src="/srs/img/autor_avatars/mat_vogels.jpg" alt="Author avatar" class="most-recent__article-autor-avatar"/>
+                <img src="static/img/autor_avatars/mat_vogels.jpg" alt="Author avatar" class="most-recent__article-autor-avatar"/>
                 <div class="most-recent__article-autor-name">
                   William Wong
                 </div>
@@ -119,14 +109,14 @@
             </div>
           </article>
           <article class="most-recent__article">
-            <img src="srs/img/articles_img/water_falls_img.png" alt="Article photo" class="most-recent__article-photo">
+            <img src="static/img/articles_img/water_falls_img.png" alt="Article photo" class="most-recent__article-photo">
             <div class="most-recent__article-body">
               <h3 class="most-recent__article-title">Water Falls</h3>
               <p class="most-recent__article-text">We travel not to escape life, but for life not to escape us.</p>
             </div>
             <div class="most-recent__article-footer">
               <div class="most-recent__article-autor">
-                <img src="/srs/img/autor_avatars/mat_vogels.jpg" alt="Author avatar" class="most-recent__article-autor-avatar"/>
+                <img src="static/img/autor_avatars/mat_vogels.jpg" alt="Author avatar" class="most-recent__article-autor-avatar"/>
                 <div class="most-recent__article-autor-name">
                   William Wong
                 </div>
@@ -137,14 +127,14 @@
             </div>
           </article>
           <article class="most-recent__article">
-            <img src="srs/img/articles_img/through_the_mist_img.png" alt="Article photo" class="most-recent__article-photo">
+            <img src="static/img/articles_img/through_the_mist_img.png" alt="Article photo" class="most-recent__article-photo">
             <div class="most-recent__article-body">
               <h3 class="most-recent__article-title">Through the Mist</h3>
               <p class="most-recent__article-text">Travel makes you see what a tiny place you occupy in the world.</p>
             </div>
             <div class="most-recent__article-footer">
               <div class="most-recent__article-autor">
-                <img src="/srs/img/autor_avatars/mat_vogels.jpg" alt="Author avatar" class="most-recent__article-autor-avatar"/>
+                <img src="static/img/autor_avatars/mat_vogels.jpg" alt="Author avatar" class="most-recent__article-autor-avatar"/>
                 <div class="most-recent__article-autor-name">
                   William Wong
                 </div>
@@ -155,14 +145,14 @@
             </div>
           </article>
           <article class="most-recent__article">
-            <img src="srs/img/articles_img/awaken_early_img.png" alt="Article photo" class="most-recent__article-photo">
+            <img src="static/img/articles_img/awaken_early_img.png" alt="Article photo" class="most-recent__article-photo">
             <div class="most-recent__article-body">
               <h3 class="most-recent__article-title">Awaken Early</h3>
               <p class="most-recent__article-text">The world is a book, and those who do not travel read only one page.</p>
             </div>
             <div class="most-recent__article-footer">
               <div class="most-recent__article-autor">
-                <img src="/srs/img/autor_avatars/mat_vogels.jpg" alt="Author avatar" class="most-recent__article-autor-avatar"/>
+                <img src="static/img/autor_avatars/mat_vogels.jpg" alt="Author avatar" class="most-recent__article-autor-avatar"/>
                 <div class="most-recent__article-autor-name">
                   William Wong
                 </div>
@@ -173,14 +163,14 @@
             </div>
           </article>
           <article class="most-recent__article">
-            <img src="srs/img/articles_img/try_it_always_img.png" alt="Article photo" class="most-recent__article-photo">
+            <img src="static/img/articles_img/try_it_always_img.png" alt="Article photo" class="most-recent__article-photo">
             <div class="most-recent__article-body">
               <h3 class="most-recent__article-title">Try it Always</h3>
               <p class="most-recent__article-text">The world is a book, and those who do not travel read only one page.</p>
             </div>
             <div class="most-recent__article-footer">
               <div class="most-recent__article-autor">
-                <img src="/srs/img/autor_avatars/mat_vogels.jpg" alt="Author avatar" class="most-recent__article-autor-avatar"/>
+                <img src="static/img/autor_avatars/mat_vogels.jpg" alt="Author avatar" class="most-recent__article-autor-avatar"/>
                 <div class="most-recent__article-autor-name">
                   William Wong
                 </div>
