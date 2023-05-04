@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="static/css/reset.css">
+  <link rel="stylesheet" href="static/css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Oxygen:wght@300;400&family=Roboto&display=swap" rel="stylesheet">
+  <title>Escape.</title>
+  </style>
+</head>
+<body>
+  <section class="promo">
+    <header class="header">
+      <div class="container header__inner">
+        <span class="logo">Escape.</span>
+        <nav class="menu">
+          <a href="#" class="menu__item">Home</a>
+          <a href="#" class="menu__item">Categories</a>
+          <a href="#" class="menu__item">About</a>
+          <a href="#" class="menu__item">Contact</a>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+      <h1 class="promo__title">Let's do it together.</h1>
+      <p class="promo__text">We travel the world in search of stories. Come along for the ride.</p>
+      <button class="promo__btn">View Latest Posts</button>
+    </div>
+  </section>
+  <nav class="submenu">
+    <div class="container submenu__inner">
+      <a href="#" class="submenu__item">Nature</a>
+      <a href="#" class="submenu__item">Photography</a>
+      <a href="#" class="submenu__item">Relaxation</a>
+      <a href="#" class="submenu__item">Vacation</a>
+      <a href="#" class="submenu__item">Travel</a>
+      <a href="#" class="submenu__item">Adventure</a>
+    </div>
+  </nav>
+  <section class="content">
+    <div class="container">
+      <div class="featured-posts">
+        <h2 class="featured-posts__title post__title title__after">Featured Posts</h2>
+        <div class="featured-posts__wrapper">
+					{{ range .FeaturedPosts }}
+          <article class="featured-posts__article" style="background: url('{{ .ImgModifier }}');">
+            <h3 class="featured-posts__article-title">{{ .Title }}</h3>
+            <p class="featured-posts__article-text">{{ .Subtitle }}</p>
+            <div class="featured-posts__article-footer">
+              <div class="featured-posts__article-autor">
+                <img src="{{ .AuthorImg }}" alt="Author avatar" class="featured-posts__article-autor-avatar"/>
+                <p class="featured-posts__article-autor-name">{{ .Author }}</p>
+              </div>
+              <div class="featured-posts__post-date">
+                {{ .PublishDate }}
+              </div>
+            </div>
+          </article>
+					{{ end }}
+        </div>
+      </div>
+      <div class="most-recent">
+        <h2 class="most-recent__title post__title title__after">Most Recent</h2>
+        <div class="most-recent__wrapper">
+					{{ range .MostRecentPost }}
+          <article class="most-recent__article">
+            <img src="{{ .ImgModifier }}" alt="Article photo" class="most-recent__article-photo">
+            <div class="most-recent__article-body">
+              <h3 class="most-recent__article-title">{{ .Title }}</h3>
+              <p class="most-recent__article-text">{{ .Subtitle }}</p>
+            </div>
+            <div class="most-recent__article-footer">
+              <div class="most-recent__article-autor">
+                <img src="{{ .AuthorImg }}" alt="Author avatar" class="most-recent__article-autor-avatar"/>
+                <div class="most-recent__article-autor-name">
+                  {{ .Author }}
+                </div>
+              </div>
+              <div class="most-recent__post-date">
+                {{ .PublishDate }}
+              </div>
+            </div>
+          </article>
+					{{ end }}
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="form__wrapper">
+    <div class="container">
+      <form action="submit" class="form" id="form" >
+        <h2 class="form__title title__after">Stay in Touch</h2>
+        <div class="form__body">
+          <input class="form__input-email" placeholder="Enter your email address" type="email">
+          <button class="form__btn">Submit</button>
+        </div>
+      </form>
+    </div>
+    <footer class="footer">
+      <div class="container footer__inner">
+        <span class="logo">Escape.</span>
+        <nav class="menu">
+          <a href="#" class="menu__item">Home</a>
+          <a href="#" class="menu__item">Categories</a>
+          <a href="#" class="menu__item">About</a>
+          <a href="#" class="menu__item">Contact</a>
+        </nav>
+      </div>
+    </footer>
+  </section>
+</body>
+</html>

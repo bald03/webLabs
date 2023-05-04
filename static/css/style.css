@@ -53,7 +53,7 @@
 
 .promo
 {
-   background: url(../srs/img/articles_img/background-promo.jpg) center center / cover no-repeat;
+   background: url('../img/articles_img/background-promo.jpg') center center / cover no-repeat;
    min-height: 500px;
 }
 
@@ -354,7 +354,7 @@
 
 .form__wrapper
 {
-    background: url('../srs/img/articles_img/bg-footer.png') center center / cover no-repeat;
+    background: url('../img/articles_img/bg-footer.png') center center / cover no-repeat;
 }
 
 .form__title
