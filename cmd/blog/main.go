@@ -40,5 +40,5 @@ func main() {
 
 func openDB() (*sql.DB, error) {
 	// Здесь прописываем соединение к базе данных
-	return sql.Open(dbDriverName, "root:fuckoffBald160972@tcp(localhost:3300)/blog?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=true")
+	return sql.Open(dbDriverName, "root:12345678@tcp(localhost:3300)/blog?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=true")
 }
