@@ -24,7 +24,7 @@ type postPage struct {
 	PostId      string `db:"post_id"`
 	Subtitle    string `db:"subtitle"`
 	ImgModifier string `db:"image_url"`
-	Autor       string `db:"author"`
+	Author      string `db:"author"`
 	AutorImg    string `db:"author_url"`
 	PublishDate string `db:"publish_date"`
 	Content     string `db:"content"`
@@ -35,8 +35,8 @@ type featuredPostData struct {
 	PostId      string `db:"post_id"`
 	Subtitle    string `db:"subtitle"`
 	ImgModifier string `db:"image_url"`
-	Autor       string `db:"author"`
-	AutorImg    string `db:"author_url"`
+	Author      string `db:"author"`
+	AuthorImg   string `db:"author_url"`
 	PublishDate string `db:"publish_date"`
 	Content     string `db:"content"`
 }
@@ -46,8 +46,8 @@ type mostRecentPostData struct {
 	PostId      string `db:"post_id"`
 	Subtitle    string `db:"subtitle"`
 	ImgModifier string `db:"image_url"`
-	Autor       string `db:"author"`
-	AutorImg    string `db:"author_url"`
+	Author      string `db:"author"`
+	AuthorImg   string `db:"author_url"`
 	PublishDate string `db:"publish_date"`
 	Content     string `db:"content"`
 }
