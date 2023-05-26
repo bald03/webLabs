@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="static/css/reset.css">
   <link rel="stylesheet" href="static/css/style.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Lora&family=Oxygen:wght@300;400&family=Roboto&display=swap" rel="stylesheet">
-  <title>Escape.</title>
+  <title>{{ .Title }}</title>
   </style>
 </head>
 <body>
@@ -46,19 +46,21 @@
         <h2 class="featured-posts__title post__title title__after">Featured Posts</h2>
         <div class="featured-posts__wrapper">
 					{{ range .FeaturedPosts }}
-          <article class="featured-posts__article" style="background: url('{{ .ImgModifier }}');">
-            <h3 class="featured-posts__article-title">{{ .Title }}</h3>
-            <p class="featured-posts__article-text">{{ .Subtitle }}</p>
-            <div class="featured-posts__article-footer">
-              <div class="featured-posts__article-autor">
-                <img src="{{ .AuthorImg }}" alt="Author avatar" class="featured-posts__article-autor-avatar"/>
-                <p class="featured-posts__article-autor-name">{{ .Author }}</p>
+          <a href="/post/{{ .PostId }}">
+            <article class="featured-posts__article" style="background: url('{{ .ImgModifier }}');">
+              <h3 class="featured-posts__article-title">{{ .Title }}</h3>
+              <p class="featured-posts__article-text">{{ .Subtitle }}</p>
+              <div class="featured-posts__article-footer">
+                <div class="featured-posts__article-autor">
+                  <img src="/{{ .AuthorImg }}" alt="Author avatar" class="featured-posts__article-autor-avatar"/>
+                  <p class="featured-posts__article-autor-name">{{ .Author }}</p>
+                </div>
+                <div class="featured-posts__post-date">
+                  {{ .PublishDate }}
+                </div>
               </div>
-              <div class="featured-posts__post-date">
-                {{ .PublishDate }}
-              </div>
-            </div>
-          </article>
+            </article>
+          </a>
 					{{ end }}
         </div>
       </div>
@@ -67,22 +69,24 @@
         <div class="most-recent__wrapper">
 					{{ range .MostRecentPost }}
           <article class="most-recent__article">
-            <img src="{{ .ImgModifier }}" alt="Article photo" class="most-recent__article-photo">
-            <div class="most-recent__article-body">
-              <h3 class="most-recent__article-title">{{ .Title }}</h3>
-              <p class="most-recent__article-text">{{ .Subtitle }}</p>
-            </div>
-            <div class="most-recent__article-footer">
-              <div class="most-recent__article-autor">
-                <img src="{{ .AuthorImg }}" alt="Author avatar" class="most-recent__article-autor-avatar"/>
-                <div class="most-recent__article-autor-name">
-                  {{ .Author }}
+            <a href="/post/{{ .PostId }}">
+              <img src="{{ .ImgModifier }}" alt="Article photo" class="most-recent__article-photo">
+              <div class="most-recent__article-body">
+                <h3 class="most-recent__article-title">{{ .Title }}</h3>
+                <p class="most-recent__article-text">{{ .Subtitle }}</p>
+              </div>
+              <div class="most-recent__article-footer">
+                <div class="most-recent__article-autor">
+                  <img src="{{ .AuthorImg }}" alt="Author avatar" class="most-recent__article-autor-avatar"/>
+                  <div class="most-recent__article-autor-name">
+                    {{ .Author }}
+                  </div>
+                </div>
+                <div class="most-recent__post-date">
+                  {{ .PublishDate }}
                 </div>
               </div>
-              <div class="most-recent__post-date">
-                {{ .PublishDate }}
-              </div>
-            </div>
+            </a>
           </article>
 					{{ end }}
         </div>
