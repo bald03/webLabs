@@ -121,6 +121,7 @@ func mostRecentPost(db *sqlx.DB) ([]mostRecentPostData, error) {
 	const query = `
 		SELECT
 			title,
+			post_id,
 			subtitle,
 			image_url,
 			author,
