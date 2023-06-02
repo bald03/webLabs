@@ -46,7 +46,7 @@
         <h2 class="featured-posts__title post__title title__after">Featured Posts</h2>
         <div class="featured-posts__wrapper">
 					{{ range .FeaturedPosts }}
-          <a href="/post/{{ .PostId }}">
+          <a href="/post/{{ .PostId }}/{{ .Title }}">
             <article class="featured-posts__article" style="background: url('{{ .ImgModifier }}');">
               <h3 class="featured-posts__article-title">{{ .Title }}</h3>
               <p class="featured-posts__article-text">{{ .Subtitle }}</p>
@@ -69,7 +69,7 @@
         <div class="most-recent__wrapper">
 					{{ range .MostRecentPost }}
           <article class="most-recent__article">
-            <a href="/post/{{ .PostId }}">
+            <a href="/post/{{ .PostId }}/{{ .Title }}">
               <img src="{{ .ImgModifier }}" alt="Article photo" class="most-recent__article-photo">
               <div class="most-recent__article-body">
                 <h3 class="most-recent__article-title">{{ .Title }}</h3>
