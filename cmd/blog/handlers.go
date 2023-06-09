@@ -2,10 +2,15 @@ package main
 
 import (
 	"database/sql"
+	"encoding/base64"
+	"encoding/json"
 	"html/template"
+	"io"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
+	"strings"
 
 	"github.com/gorilla/mux"
 	"github.com/jmoiron/sqlx"
@@ -16,6 +21,22 @@ type indexPage struct {
 	Subtitle       string
 	FeaturedPosts  []featuredPostData
 	MostRecentPost []mostRecentPostData
+}
+
+type createPostRequest struct {
+	Title           string `json:"postTitle"`
+	Subtitle        string `json:"postShortDescr"`
+	ImgModifier     string `json:"image_url"`
+	Autor           string `json:"postAuthorName"`
+	AutorImg        string `json:"author_url"`
+	PublishDate     string `json:"postPublishDate"`
+	Content         string `json:"postContent"`
+	BigImageName    string `json:"postBigImageName"`
+	SmallImageName  string `json:"postSmallImageName"`
+	AuthorPhotoName string `json:"postAdminPhotoName"`
+	BigImage        string `json:"postBigImage"`
+	SmallImage      string `json:"postSmallImage"`
+	AuthorPhoto     string `json:"postAdminPhoto"`
 }
 
 type postPage struct {
@@ -146,6 +167,129 @@ func adminPost(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 
 		log.Println("Request completed successfully")
 	}
+}
+
+func createPost(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		reqData, err := io.ReadAll(r.Body)
+		if err != nil {
+			http.Error(w, "error", 500)
+			log.Println(err.Error())
+			return
+		}
+
+		var req createPostRequest
+		err = json.Unmarshal(reqData, &req)
+		if err != nil {
+			http.Error(w, "Please, download all images", 401)
+			log.Println(err.Error())
+			return
+		}
+
+		authorImg, err := base64.StdEncoding.DecodeString(req.AuthorPhoto[strings.IndexByte(req.AuthorPhoto, ',')+1:])
+		if err != nil {
+			http.Error(w, "Please, download author image", 401)
+			log.Println(err.Error())
+			return
+		}
+
+		fileAuthor, err := os.Create("static/img/autor_avatars/" + req.AuthorPhotoName)
+		if err != nil {
+			http.Error(w, "Error, download to server", 500)
+			log.Println(err.Error())
+			return
+		}
+		defer fileAuthor.Close()
+
+		_, err = fileAuthor.Write(authorImg)
+		if err != nil {
+			http.Error(w, "Error, download to server", 500)
+			log.Println(err.Error())
+			return
+		}
+
+		bigImg, err := base64.StdEncoding.DecodeString(req.BigImage[strings.IndexByte(req.BigImage, ',')+1:])
+		if err != nil {
+			http.Error(w, "Please, download article preview", 401)
+			log.Println(err.Error())
+			return
+		}
+
+		fileBig, err := os.Create("static/img/articles_img/" + req.BigImageName)
+		if err != nil {
+			http.Error(w, err.Error(), 500)
+			log.Println(err.Error())
+			return
+		}
+		defer fileBig.Close()
+
+		_, err = fileBig.Write(bigImg)
+		if err != nil {
+			http.Error(w, "error", 500)
+			log.Println(err.Error())
+			return
+		}
+
+		smallImg, err := base64.StdEncoding.DecodeString(req.SmallImage[strings.IndexByte(req.SmallImage, ',')+1:])
+		if err != nil {
+			http.Error(w, "Please, download article preview", 401)
+			log.Println(err.Error())
+			return
+		}
+
+		fileSmall, err := os.Create("static/img/articles_img/" + req.SmallImageName)
+		if err != nil {
+			http.Error(w, "error", 500)
+			log.Println(err.Error())
+			return
+		}
+		defer fileSmall.Close()
+
+		_, err = fileSmall.Write(smallImg)
+		if err != nil {
+			http.Error(w, "error", 500)
+			log.Println(err.Error())
+			return
+		}
+
+		err = savePost(db, req)
+		if err != nil {
+			http.Error(w, "bd", 500)
+			log.Println(err.Error())
+			return
+		}
+
+	}
+}
+
+func savePost(db *sqlx.DB, req createPostRequest) error {
+	const query = `
+		INSERT INTO
+			post
+		(
+			title,
+			subtitle,
+			author,
+			author_url,
+			publish_date,
+			image_url,
+			content
+		)
+		VALUES
+		(
+			?,
+			?,
+			?,
+			CONCAT('/static/img/autor_avatars/', ?),
+			?,
+			CONCAT('/static/img/articles_img/', ?),
+			?
+		)
+	`
+
+	_, err := db.Exec(query, req.Title, req.Subtitle, req.Autor, req.AuthorPhotoName, req.PublishDate, req.BigImageName, req.Content)
+	// _, err := db.Exec(query, req.Title, req.Subtitle, req.Autor, req.PublishDate, req.Content)
+	return err
 }
 
 func featuredPosts(db *sqlx.DB) ([]featuredPostData, error) {

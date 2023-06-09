@@ -55,13 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (input.files[0]) {
             reader.readAsDataURL(input.files[0]);
             reader.onloadend  =  () => {
-                imageForm[input.getAttribute('name')] = {
-                    imageInBase64: String(reader.result),
-                    nameFile: input.files[0].name
-                };
+                imageForm[input.getAttribute('name')] = String(reader.result);
+                imageForm[`${input.getAttribute('name')}Name`] = input.files[0].name;
             };
         } else {
-            imageForm[input.getAttribute('name')] = {};
+            imageForm[input.getAttribute('name')] = '';
+            imageForm[`${input.getAttribute('name')}Name`] = '';
         }
     }; //загружает изображения в imageForm
 
@@ -193,6 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
+
     form.addEventListener('submit', (event) => {
         event.preventDefault();
         const formData = new FormData(form),
@@ -211,28 +211,53 @@ document.addEventListener('DOMContentLoaded', () => {
         };  //submit на форме формирует объект formData, содержащий данные формы, добавляет данные об
             //изображениях из imageForm и выводит информацию о результате отправки формы в консоль.
 
+        function showSuccess() {
+            infoComponent.classList.remove(infoAboutStateSubmitForm.error.infoClass);
+            infoComponent.classList.add(infoAboutStateSubmitForm.success.infoClass);
+            infoComponent.classList.remove(hiddenClass);
+            infoComponent.innerHTML = infoAboutStateSubmitForm.success.text;
+        }
 
+        function showError(error) {
+            infoComponent.classList.remove(infoAboutStateSubmitForm.success.infoClass);
+            infoComponent.classList.add(infoAboutStateSubmitForm.error.infoClass);
+            infoComponent.classList.remove(hiddenClass);
+            infoComponent.innerHTML = error;
+        }
 
 
         if (validateForm(inputsText)) {
             for (let key in imageForm) {
                 newFormData[key] = imageForm[key];
+                console.log(newFormData[key], imageForm[key]);
             }
 
-            infoComponent.classList.remove(infoAboutStateSubmitForm.error.infoClass);
-            infoComponent.classList.add(infoAboutStateSubmitForm.success.infoClass);
-            infoComponent.classList.remove(hiddenClass);
-            infoComponent.innerHTML = infoAboutStateSubmitForm.success.text;
+            const createPost = fetch("/create-post", {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify(newFormData)
+            });
 
-            console.log(newFormData);
-            console.log(JSON.stringify(newFormData));
+            createPost.then((response) => {
+                response.text().then(function (data) {
+                    let result = data;
+                    if(result) {
+                        showError(result);
+                        console.error('Ошибка!');
+                    } else {
+                        showSuccess();
+                    }
+                });
+            }).catch((error) => {
+                showError(infoAboutStateSubmitForm.error.text);
+                console.error('Ошибка!');
+            });
+
         } else {
-
-            infoComponent.classList.remove(infoAboutStateSubmitForm.success.infoClass);
-            infoComponent.classList.add(infoAboutStateSubmitForm.error.infoClass);
-            infoComponent.classList.remove(hiddenClass);
-            infoComponent.innerHTML = infoAboutStateSubmitForm.error.text;
-
+            showError(infoAboutStateSubmitForm.error.text);
             console.error('Ошибка!');
         }
 

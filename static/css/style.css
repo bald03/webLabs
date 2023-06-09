@@ -245,6 +245,13 @@
     flex-wrap: wrap;
 }
 
+.most-recent__article-photo
+{
+    width: 100%;
+    height: 150px;
+}
+
+
 .most-recent__article
 {
     width: 296px;
@@ -298,6 +305,8 @@
 {
     border-radius: 50%;
     margin-right: 10px;
+    max-width: 26px;
+    max-height: 26px;
 }
 
 
