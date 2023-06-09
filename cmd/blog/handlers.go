@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"strconv"
 
-	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
 	"github.com/jmoiron/sqlx"
 )
@@ -52,6 +51,14 @@ type mostRecentPostData struct {
 	Content     string `db:"content"`
 }
 
+type adminPage struct {
+	Title string
+}
+
+type adminPostPage struct {
+	Title string
+}
+
 func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		featuredPosts, err := featuredPosts(db)
@@ -78,6 +85,56 @@ func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 			Title:          "Escape",
 			FeaturedPosts:  featuredPosts,
 			MostRecentPost: mostRecentPost,
+		}
+
+		err = ts.Execute(w, data) // Заставляем шаблонизатор вывести шаблон в тело ответа
+		if err != nil {
+			http.Error(w, "Internal Server Error", 403)
+			log.Println(err)
+			return
+		}
+
+		log.Println("Request completed successfully")
+	}
+}
+
+func admin(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+
+		ts, err := template.ParseFiles("pages/admin-login.html") // Главная страница блога
+		if err != nil {
+			http.Error(w, "Internal Server Error", 404) // В случае ошибки парсинга - возвращаем 500
+			log.Println(err)
+			return // Не забываем завершить выполнение ф-ии
+		}
+
+		data := adminPage{
+			Title: "admin-page",
+		}
+
+		err = ts.Execute(w, data) // Заставляем шаблонизатор вывести шаблон в тело ответа
+		if err != nil {
+			http.Error(w, "Internal Server Error", 403)
+			log.Println(err)
+			return
+		}
+
+		log.Println("Request completed successfully")
+	}
+}
+
+func adminPost(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+
+		ts, err := template.ParseFiles("pages/admin-post.html") // Главная страница блога
+		if err != nil {
+			http.Error(w, "Internal Server Error", 404) // В случае ошибки парсинга - возвращаем 500
+			log.Println(err)
+			return // Не забываем завершить выполнение ф-ии
+		}
+
+		data := adminPostPage{
+			Title: "admin-post",
 		}
 
 		err = ts.Execute(w, data) // Заставляем шаблонизатор вывести шаблон в тело ответа

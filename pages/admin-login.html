@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/css/reset.css">
+  <link rel="stylesheet" href="../static/css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Oxygen:wght@300;400&family=Roboto&display=swap" rel="stylesheet">
+  <title>{{ .Title }}</title>
+</head>
+<body>
+  <section class="login__wrapper">
+    <div class="container container_login">
+      <div class="login">
+        <div class="login__descr">
+          <h2 class="login__descr-title">
+            Escape.<span>author</span>
+          </h2>
+          <p class="login__descr-text">
+            Log in to start creating
+          </p>
+        </div>
+        <form action="#" class="admin-form admin-form_login">
+          <h2 class="admin-form__title">
+            Log In
+          </h2>
+          <div class="admin-form__info admin-form__error">
+            Email or password is incorrect.
+          </div>
+          <div class="admin-form__input-wrapper admin-form__input-text-wrapper">
+            <label for="loginEmail" class="admin-form__input-label">Email</label>
+            <input id="loginEmail" name="loginEmail" type="email" class="admin-form__input-text">
+            <label for="loginEmail" class="admin-form__input-error hidden">Email is required.</label>
+          </div>
+          <div class="admin-form__input-wrapper admin-form__input-text-wrapper admin-form__input-text_password">
+            <label for="loginPassword" class="admin-form__input-label">Password</label>
+            <input id="loginPassword" name="loginEmail" type="password" class="admin-form__input-text">
+            <label for="loginPassword" class="admin-form__input-error hidden">Password is required.</label>
+          </div>
+          <input class="admin-form__btn" type="submit" value="Log In">
+        </form>
+      </div>
+    </div>
+  </section>
+  <script src="../static/script/index.js"></script>
+</body>
+</html>

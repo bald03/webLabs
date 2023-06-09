@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../static/css/reset.css">
+  <link rel="stylesheet" href="../static/css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Oxygen:wght@300;400&family=Roboto&display=swap" rel="stylesheet">
+  <title>{{ .Title }}</title>
+</head>
+<body class="admin-post">
+  <header class="admin-post__header">
+    <div class="container container_admin-post">
+      <div class="admin-post__header-inner">
+        <h2 class="admin-post__header-logo">
+          Escape.<span>author</span>
+        </h2>
+        <div class="admin-post__login">
+          <div class="admin-post__profile">
+            <img src="../static/img/autor_avatars/Avatar.png" alt="Avatar logo" class="admin-post__avatar">
+          </div>
+          <div class="admin-post__exit-btn"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container container_admin-post">
+    <form id="adminPost" name="adminPost" class="admin-form">
+      <div class="admin-form__header">
+        <div class="admin-form__header-descr">
+          <h2 class="admin-form__title admin-post__form-title">New Post</h2>
+          <p class="admin-form__header-text">
+            Fill out the form bellow and publish your article
+          </p>
+        </div>
+        <input type="submit" class="admin-form__btn"  value="Publish">
+      </div>
+      <div class="admin-form__info admin-post__form-info hidden"></div>
+      <div class="admin-form__section">
+        <h3 class="admin-form__section-title">Main Information</h3>
+        <div class="admin-form__container">
+          <div class="admin-form__column admin-form__column_inputs">
+            <div class="admin-form__input-wrapper admin-form__input-text-wrapper">
+              <label for="postTitle" class="admin-form__input-label">Title</label>
+              <input id="postTitle" name="postTitle" type="text" class="admin-form__input-text">
+              <label for="postTitle" class="admin-form__input-error hidden ">Title is required.</label>
+            </div>
+            <div class="admin-form__input-wrapper admin-form__input-text-wrapper">
+              <label for="postShortDescr" class="admin-form__input-label">Short description</label>
+              <input id="postShortDescr" name="postShortDescr" type="text" class="admin-form__input-text">
+              <label for="postShortDescr" class="admin-form__input-error  hidden ">Short description is required.</label>
+            </div>
+            <div class="admin-form__input-wrapper admin-form__input-text-wrapper">
+              <label for="postAuthorName" class="admin-form__input-label">Author name</label>
+              <input id="postAuthorName" name="postAuthorName" type="text" class="admin-form__input-text">
+              <label for="postAuthorName" class="admin-form__input-error  hidden">Author name is required.</label>
+            </div>
+            <div id="adminFormAuthorPhoto" class="admin-form__input-wrapper">
+              <label id="previewImagePostCard" for="postAdminPhoto" class=" admin-form__input-label">Author Photo</label>
+              <div class="admin-form__input-photo-wrapper">
+                <label id="previewAuthorPhotoInput"  for="postAdminPhoto" class="admin-form__input-avatar"></label>
+                <input id="postAdminPhoto" name="postAdminPhoto" type="file" class="admin-form__input-photo" accept=".png, .jpeg, .gif">
+                <label for="postAdminPhoto" class="admin-form__input-btn admin-form__input-upload">Upload</label>
+                <div class="admin-form__input-btn-wrapper hidden">
+                  <label for="postAdminPhoto" class="admin-form__input-btn admin-form__input-upload-new">Upload New</label>
+                  <label for="postAdminPhoto" class="admin-form__input-btn admin-form__input-remove">Remove</label>
+                </div>
+              </div>
+            </div>
+            <div class="admin-form__input-wrapper admin-form__input-text-wrapper">
+              <label for="postPublishDate" class="admin-form__input-label">Publish Date</label>
+              <input id="postPublishDate" name="postPublishDate" type="date" class="admin-form__input-text">
+              <label for="postPublishDate" class="admin-form__input-error hidden ">Publish Date is required.</label>
+            </div>
+            <div id="adminFormBigImage" class="admin-form__input-wrapper">
+              <label for="postBigImage" class="admin-form__input-label">Hero image</label>
+              <input id="postBigImage" name="postBigImage" type="file" class="admin-form__input-photo">
+              <label id="previewBigImageInput" for="postBigImage" class="admin-form__image-upload admin-form__big-image-upload"></label>
+              <div class="admin-form__input-btn-wrapper hidden">
+                <label for="postBigImage" class="admin-form__input-btn admin-form__input-upload-new">Upload New</label>
+                <label for="postBigImage" class="admin-form__input-btn admin-form__input-remove">Remove</label>
+              </div>
+              <div class="admin-form__image-info">Size up to 10mb. Format: png, jpeg, gif.</div>
+            </div>
+            <div id="adminFormSmallImage" class="admin-form__input-wrapper">
+              <label for="postSmallImage" class="admin-form__input-label">Hero image</label>
+              <input id="postSmallImage" name="postSmallImage" type="file" class="admin-form__input-photo">
+              <label id="previewSmallImageInput"  for="postSmallImage" class="admin-form__image-upload admin-form__small-image-upload"></label>
+              <div class="admin-form__input-btn-wrapper hidden">
+                <label for="postSmallImage" class="admin-form__input-btn admin-form__input-upload-new">Upload New</label>
+                <label for="postSmallImage" class="admin-form__input-btn admin-form__input-remove">Remove</label>
+              </div>
+              <div class="admin-form__image-info">Size up to 5mb. Format: png, jpeg, gif.</div>
+            </div>
+          </div>
+          <div class="admin-form__column
+          admin-form__column_preview">
+            <div class="admin-form__preview-wrapper">
+              <label class="admin-form__input-label admin-form__preview-label">Article preview</label>
+              <div class="admin-form__preview">
+                <div class="admin-form__window">
+                  <div class="admin-form__window-header">
+                    <div class="admin-form__window-menu"></div>
+                  </div>
+                  <div class="admin-form__post-preview">
+                    <h3 id="previewTitleArticle" data-default-value="New Post"  class="admin-form__post-preview-title">New Post</h3>
+                    <div data-default-value="Please, enter any description"   id="previewDescrArticle" class="admin-form__post-preview-subtitle">
+                      Please, enter any description
+                    </div>
+                    <div id="previewBigImageArticle"  class="admin-form__post-preview-img"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="admin-form__preview-wrapper">
+              <label class="admin-form__input-label admin-form__preview-label">Post card preview</label>
+              <div class="admin-form__preview">
+                <article class="admin-form__post-card-preview most-recent__article">
+                  <div id="previewSmallImagePostCard"
+                  class="admin-form__post-card-preview-img"></div>
+                  <div class="most-recent__article-body">
+                    <h3 data-default-value="New Post"  id="previewTitlePostCard" class="most-recent__article-title">
+                      New Post
+                    </h3>
+                    <p data-default-value="Please, enter any description"  id="previewDescrPostCard" class="most-recent__article-text">
+                      Please, enter any description
+                    </p>
+                  </div>
+                  <div class="most-recent__article-footer">
+                    <div class="most-recent__article-autor">
+                      <div id="previewAuthorPhotoPostCard"  class="admin-form__post-card-preview-photo"></div>
+                      <div data-default-value="Enter author name" id="previewAuthorNamePostCard" class="most-recent__article-autor-name">
+                        Enter author name
+                      </div>
+                    </div>
+                    <div data-default-value="4/19/2023" id="previewDatePostCard"  class="most-recent__post-date">
+                      4/3/2023
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="admin-form__section">
+        <h3 class="admin-form__section-title">Content</h3>
+        <div class="admin-form__input-wrapper admin-form__input-text-wrapper">
+          <label for="postContent" class="admin-form__input-label">Post content (plain text)</label>
+          <textarea placeholder="Type anything you want ..." id="postContent" name="postContent" type="text" class="admin-form__input-text admin-form__textarea"></textarea>
+          <label for="postContent" class="admin-form__input-error hidden ">Content is required.</label>
+        </div>
+      </div>
+    </form>
+  </div>
+  <script src="../static/script/index.js"></script>
+</body>
+</html>
